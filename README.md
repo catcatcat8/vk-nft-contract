@@ -35,6 +35,7 @@ function createBatchNfts(uint256 idsCount_, uint256[] calldata amounts_, string[
 
 `idsCount_` should be equal to `amounts_` and `uris_` length.
 Ids of the created NFTs will start from the `createdIdsCount` variable in the contract at the time the function is called.
+
 An example of creating three NFTs (one of the first id, two of the second id and three of the third id) with id starts from 5 (`createdIdsCount` is equal to 5 before call):
 ```
 createBatchNfts(3, [1, 2, 3], ["QmeUgAhdTepBawrCHLyjLdyZjHBfsm5ohSCoctB1FVHa99", "QmsomeIpfsCID", "QmsomeIpfsCID2"])
