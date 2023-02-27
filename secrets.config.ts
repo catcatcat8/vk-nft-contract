@@ -12,8 +12,8 @@ const DEFAULT_HARDHAT_ACCS_PR_KEYS: string[] = [
   '198131415b5c941a2f2c10bb547be0fa9bacc32d80176c029c22e32f4ba32696',
 ]
 
-const DEFAULT_TENDERLY_RPC = 'https://rpc.tenderly.co/fork/3ebaf9bd-daec-48d3-b96e-d4bd104da686'
-const DEFAULT_TENDERLY_CHAIN_ID = 56
+const DEFAULT_TENDERLY_RPC = 'https://rpc.tenderly.co/fork/95720214-95c1-4c83-8a58-95b8cbf68846'
+const DEFAULT_TENDERLY_CHAIN_ID = 137
 
 export const config = defineConfig({
   rpc: defaultRpc(),

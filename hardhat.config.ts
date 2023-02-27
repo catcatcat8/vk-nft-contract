@@ -10,7 +10,6 @@ import 'hardhat-deploy'
 import './tools/hardhat/init'
 import { genNetworks, genCompilers, node } from './tools/hardhat'
 import { HARDHAT_ACCS_PR_KEYS } from './secrets.config'
-import { chainIds, ChainTag } from './tools/hardhat/types'
 
 const ACC_PUBKEY: string = '0x666e416d73609f61C60d8A844066A0d956805118'
 
@@ -30,10 +29,6 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   }
 })
 
-const CHAIN_ID = Number(process.env.TENDERLY_CHAIN_ID)
-const CHAIN_TAG = Object.keys(chainIds).find((tag) => chainIds[tag as ChainTag] === CHAIN_ID) as ChainTag | undefined
-if (!CHAIN_TAG) console.error('ERROR: NO "CHAIN_ID" PASSED IN ENVIRONMENT VARIABLES')
-
 export const config: HardhatUserConfig = {
   solidity: {
     compilers: genCompilers(['0.8.12']), // separated by comma
@@ -45,7 +40,7 @@ export const config: HardhatUserConfig = {
     owner: {
       default: HARDHAT_ACCS_PUB_KEYS[0],
       polygon_mainnet: ACC_PUBKEY,
-      tenderly: ACC_PUBKEY
+      tenderly: HARDHAT_ACCS_PUB_KEYS[0]
     },
   },
   networks: {
@@ -53,7 +48,7 @@ export const config: HardhatUserConfig = {
       tags: ['fork'],
       chainId: 56,
       forking: {
-        url: CHAIN_TAG ? node(CHAIN_TAG).rpc : '',
+        url: '',
         // blockNumber:
         enabled: false
       },
@@ -86,7 +81,6 @@ export const config: HardhatUserConfig = {
       ],
     },
     ...genNetworks(),
-    // place here any network you like (for overiding `networkGenerator`)
   },
   gasReporter: {
     enabled: true,
